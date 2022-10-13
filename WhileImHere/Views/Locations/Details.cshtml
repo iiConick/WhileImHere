@@ -1,0 +1,35 @@
+﻿@model WhileImHere.Models.Location
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>City/Town Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Name
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationName)
+        </dd>
+        <dt class = "col-sm-2">
+            Notification Radius (km)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationRadius)
+        </dd>
+        <dt class = "col-sm-2">
+            Priority
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationPriority)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class= "btn btn-warning" asp-action="Edit" asp-route-id="@Model?.LocationID">Edit</a> 
+    <a class= "btn btn-primary" asp-action="Index">Back to List</a>
+</div>

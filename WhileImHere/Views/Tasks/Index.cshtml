@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WhileImHere.Models.Task>
+
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+<h1>Tasks</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New Task</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Task
+            </th>
+            <th>
+                Description (optional)
+            </th>
+            <th>
+                Street Address
+            </th>
+            <th>
+                Notification Radius (km)
+            </th>
+            <th>
+                City/Town
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskStreetAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskRadius)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.LocationName)
+            </td>
+            <td>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.TaskID">Details</a>
+                <a class ="btn btn-warning" asp-action="Edit" asp-route-id="@item.TaskID">Edit</a> 
+                <a class ="btn btn-danger" asp-action="Delete" asp-route-id="@item.TaskID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

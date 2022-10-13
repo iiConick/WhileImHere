@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WhileImHere.Models.Location>
+
+@{
+    ViewData["Title"] = "Locations";
+}
+
+<h1>Locations</h1>
+
+<p>
+    <a class="btn btn-primary"asp-action="Create">Add a New Location</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                City/Town
+            </th>
+            <th>
+                Notifcation Radius (km)
+            </th>
+            <th>
+                Priority 
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationRadius)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationPriority)
+            </td>
+            <td>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.LocationID">Details</a>
+                <a class="btn btn-warning"asp-action="Edit" asp-route-id="@item.LocationID">Edit</a>  
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.LocationID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

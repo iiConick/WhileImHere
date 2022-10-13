@@ -1,0 +1,51 @@
+﻿@model WhileImHere.Models.Task
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Task</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Task</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description (optional)</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskStreetAddress" class="control-label">Street Address</label>
+                <input asp-for="TaskStreetAddress" class="form-control" />
+                <span asp-validation-for="TaskStreetAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskRadius" class="control-label">Notification Radius (km)</label>
+                <input asp-for="TaskRadius" class="form-control" />
+                <span asp-validation-for="TaskRadius" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationID" class="control-label">City/Town</label>
+                <select asp-for="LocationID" class ="form-control" asp-items="ViewBag.LocationID"></select>
+            </div>
+            <div class="form-group btnpadding">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

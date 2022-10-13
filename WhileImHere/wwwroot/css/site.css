@@ -14,5 +14,18 @@ html {
 }
 
 body {
+
   margin-bottom: 60px;
+}
+
+nav {
+    background-color: #16324F;
+}
+
+.btnpadding {
+    padding-top: 5px;
+}
+footer {
+   background-color: #2A628F;
+   color: white;
 }

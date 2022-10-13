@@ -1,0 +1,47 @@
+﻿@model WhileImHere.Models.Task
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Task Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Task
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Description
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            Street Address
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TaskStreetAddress)
+        </dd>
+        <dt class = "col-sm-2">
+            Notification Radius (km)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TaskRadius)
+        </dd>
+        <dt class = "col-sm-2">
+            City/Town
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location.LocationName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.TaskID">Edit</a> 
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>
