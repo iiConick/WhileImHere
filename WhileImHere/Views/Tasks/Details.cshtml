@@ -42,6 +42,9 @@
     </dl>
 </div>
 <div>
-    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.TaskID">Edit</a> 
+     @if (User.IsInRole("Administrator")) 
+     {
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.TaskID">Edit</a> 
+     }
     <a class="btn btn-primary" asp-action="Index">Back to List</a>
 </div>

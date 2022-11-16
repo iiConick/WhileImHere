@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WhileImHere.Data;
 using WhileImHere.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WhileImHere.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class LocationsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +26,7 @@ namespace WhileImHere.Controllers
         {
               return View(await _context.Locations.ToListAsync());
         }
-
+        [AllowAnonymous]
         // GET: Locations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
