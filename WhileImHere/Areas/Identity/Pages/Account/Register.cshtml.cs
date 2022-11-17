@@ -120,8 +120,8 @@ namespace WhileImHere.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    // automatically add all new users to the role of Customer in AspNetUserRoles
-                    await _userManager.AddToRoleAsync(user, "Customer");
+
+                   
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

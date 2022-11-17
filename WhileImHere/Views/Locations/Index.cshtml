@@ -5,10 +5,13 @@
 }
 
 <h1>Locations</h1>
+ @if(User.IsInRole("Administrator"))
+{
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Add a New Location</a>
+    </p>
+}               
 
-<p>
-    <a class="btn btn-primary"asp-action="Create">Add a New Location</a>
-</p>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -37,9 +40,12 @@
                 @Html.DisplayFor(modelItem => item.LocationPriority)
             </td>
             <td>
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.LocationID">Details</a>
-                <a class="btn btn-warning"asp-action="Edit" asp-route-id="@item.LocationID">Edit</a>  
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.LocationID">Delete</a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.LocationID">Details</a>
+                        <a class="btn btn-warning"asp-action="Edit" asp-route-id="@item.LocationID">Edit</a>  
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.LocationID">Delete</a>
+                    }
             </td>
         </tr>
 }

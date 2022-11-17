@@ -6,9 +6,12 @@
 
 <h1>Tasks</h1>
 
-<p>
-    <a class="btn btn-primary" asp-action="Create">Create New Task</a>
-</p>
+ @if(User.IsInRole("Administrator"))
+ {
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Create New Task</a>
+    </p>
+ }
 <table class="table table-striped">
     <thead>
         <tr>
@@ -49,9 +52,13 @@
                 @Html.DisplayFor(modelItem => item.Location.LocationName)
             </td>
             <td>
+                @if(User.IsInRole("Administrator"))
+                {
                     <a class="btn btn-info" asp-action="Details" asp-route-id="@item.TaskID">Details</a>
-                <a class ="btn btn-warning" asp-action="Edit" asp-route-id="@item.TaskID">Edit</a> 
-                <a class ="btn btn-danger" asp-action="Delete" asp-route-id="@item.TaskID">Delete</a>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.TaskID">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.TaskID">Delete</a>
+                }
+                   
             </td>
         </tr>
 }

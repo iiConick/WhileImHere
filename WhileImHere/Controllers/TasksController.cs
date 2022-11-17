@@ -21,6 +21,7 @@ namespace WhileImHere.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET: Tasks
         public async Task<IActionResult> Index()
         {
