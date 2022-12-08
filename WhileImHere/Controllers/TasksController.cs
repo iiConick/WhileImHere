@@ -26,7 +26,7 @@ namespace WhileImHere.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Tasks.Include(t => t.Location);
-            return View(await applicationDbContext.ToListAsync());
+            return View("Index", await applicationDbContext.ToListAsync());
         }
 
         [AllowAnonymous]
@@ -35,7 +35,8 @@ namespace WhileImHere.Controllers
         {
             if (id == null || _context.Tasks == null)
             {
-                return NotFound();
+                //return NotFound();
+                return View("404");
             }
 
             var task = await _context.Tasks
@@ -43,17 +44,17 @@ namespace WhileImHere.Controllers
                 .FirstOrDefaultAsync(m => m.TaskID == id);
             if (task == null)
             {
-                return NotFound();
+                return View("404");
             }
 
-            return View(task);
+            return View("Details", task);
         }
 
         // GET: Tasks/Create
         public IActionResult Create()
         {
             ViewData["LocationID"] = new SelectList(_context.Locations, "LocationID", "LocationName");
-            return View();
+            return View("Create");
         }
 
         // POST: Tasks/Create
@@ -70,7 +71,7 @@ namespace WhileImHere.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["LocationID"] = new SelectList(_context.Locations, "LocationID", "LocationName", task.LocationID);
-            return View(task);
+            return View("Create", task);
         }
 
         // GET: Tasks/Edit/5
@@ -78,16 +79,16 @@ namespace WhileImHere.Controllers
         {
             if (id == null || _context.Tasks == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var task = await _context.Tasks.FindAsync(id);
             if (task == null)
             {
-                return NotFound();
+                return View("404");
             }
             ViewData["LocationID"] = new SelectList(_context.Locations, "LocationID", "LocationName", task.LocationID);
-            return View(task);
+            return View("Edit", task);
         }
 
         // POST: Tasks/Edit/5
@@ -99,7 +100,7 @@ namespace WhileImHere.Controllers
         {
             if (id != task.TaskID)
             {
-                return NotFound();
+                return View("404");
             }
 
             if (ModelState.IsValid)
@@ -113,7 +114,7 @@ namespace WhileImHere.Controllers
                 {
                     if (!TaskExists(task.TaskID))
                     {
-                        return NotFound();
+                        return View("404");
                     }
                     else
                     {
@@ -123,7 +124,7 @@ namespace WhileImHere.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["LocationID"] = new SelectList(_context.Locations, "LocationID", "LocationName", task.LocationID);
-            return View(task);
+            return View("Edit", task);
         }
 
         // GET: Tasks/Delete/5
@@ -131,7 +132,7 @@ namespace WhileImHere.Controllers
         {
             if (id == null || _context.Tasks == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var task = await _context.Tasks
@@ -139,10 +140,10 @@ namespace WhileImHere.Controllers
                 .FirstOrDefaultAsync(m => m.TaskID == id);
             if (task == null)
             {
-                return NotFound();
+                return View("404");
             }
 
-            return View(task);
+            return View("Delete", task);
         }
 
         // POST: Tasks/Delete/5
@@ -159,14 +160,14 @@ namespace WhileImHere.Controllers
             {
                 _context.Tasks.Remove(task);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TaskExists(int id)
         {
-          return _context.Tasks.Any(e => e.TaskID == id);
+            return _context.Tasks.Any(e => e.TaskID == id);
         }
     }
 }
