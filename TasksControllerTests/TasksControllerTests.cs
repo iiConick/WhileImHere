@@ -26,6 +26,7 @@ namespace WhileImHereTests
             context = new ApplicationDbContext(options);
 
             //seed the db before passing it to the controller
+            //mock data
             var location = new Location { LocationID = 367, LocationName = "Some Location", LocationRadius = "20", LocationPriority = 1};
             context.Add(location);
 
